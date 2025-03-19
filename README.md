@@ -1,1 +1,1 @@
-My rc.lua for AwesomeWM
+My rc.lua config for AwesomeWM
