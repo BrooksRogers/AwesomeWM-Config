@@ -591,4 +591,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xrandr --output HDMI-A-0 --rotate right --right-of DisplayPort-1")
+awful.spawn.with_shell('xinput set-prop "ASUF1204:00 2808:0202 Touchpad" "libinput Tapping Enabled" 1')
 
