@@ -266,6 +266,10 @@ end, {description = "take screenshot", group = "custom"}),
         end,
         {description = "focus next by index", group = "client"}
     ),
+    awful.key({ modkey, "Control" }, "l",
+    function () awful.spawn("i3lock") end,
+    {description = "lock screen", group = "system"}),
+
     awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
