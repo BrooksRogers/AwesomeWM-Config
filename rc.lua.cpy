@@ -259,20 +259,6 @@ globalkeys = gears.table.join(
     awful.spawn("scrot -s")
 end, {description = "take screenshot", group = "custom"}),
 
--- Increase volume
-awful.key({}, "XF86AudioRaiseVolume", function()
-    awful.spawn("amixer -D pulse sset Master 5%+")
-end, {description = "increase volume", group = "media"}),
-
--- Decrease volume
-awful.key({}, "XF86AudioLowerVolume", function()
-    awful.spawn("amixer -D pulse sset Master 5%-")
-end, {description = "decrease volume", group = "media"}),
-
--- Toggle mute
-awful.key({}, "F1", function()
-    awful.spawn("amixer -D pulse sset Master toggle")
-end, {description = "toggle mute", group = "media"}),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -602,6 +588,7 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
 
 
 -- Autostart Applications
