@@ -256,7 +256,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 	awful.key({}, "Print", function ()
-    awful.spawn("scrot -s")
+
+	  awful.spawn.with_shell(
+      'scrot -s "$HOME/Downloads/screenshot-%Y-%m-%d_%H%M%S.png" ' ..
+      '-e \'xclip -selection clipboard -t image/png -i $f\''
+    ) 
 end, {description = "take screenshot", group = "custom"}),
 
 -- Increase volume
@@ -280,10 +284,6 @@ end, {description = "toggle mute", group = "media"}),
         end,
         {description = "focus next by index", group = "client"}
     ),
-    awful.key({ modkey, "Control" }, "l",
-    function () awful.spawn("i3lock") end,
-    {description = "lock screen", group = "system"}),
-
     awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
@@ -608,5 +608,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xrandr --output HDMI-A-0 --rotate right --right-of DisplayPort-1")
-awful.spawn.with_shell('xinput set-prop "ASUF1204:00 2808:0202 Touchpad" "libinput Tapping Enabled" 1')
 
