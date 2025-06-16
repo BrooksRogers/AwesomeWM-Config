@@ -82,6 +82,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
+
 -- }}}
 
 -- {{{ Menu
@@ -284,6 +285,10 @@ end, {description = "toggle mute", group = "media"}),
         end,
         {description = "focus next by index", group = "client"}
     ),
+        awful.key({ modkey, "Control" }, "l",
+    function () awful.spawn("i3lock") end,
+    {description = "lock screen", group = "system"}),
+
     awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx(-1)
@@ -496,6 +501,18 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
+    {
+    rule = { class = "Keybase" },
+    callback = function(c)
+        if c.name and c.name:match("Keybase") then
+            local t = awful.tag.find_by_name(c.screen, "5")
+            if t then
+                c:move_to_tag(t)
+                t:view_only()
+            end
+        end
+    end
+},
 
     -- Floating clients.
     { rule_any = {
@@ -608,4 +625,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("compton")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("xrandr --output HDMI-A-0 --rotate right --right-of DisplayPort-1")
+awful.spawn.with_shell('xinput set-prop "ASUF1204:00 2808:0202 Touchpad" "libinput Tapping Enabled" 1')
+-- Autostart Keybase
+awful.spawn.with_shell("run_keybase")
 
